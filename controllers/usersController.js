@@ -28,7 +28,7 @@ async function getUsers(req, res) {
               transaction.user.toString() === user._id.toString() &&
               transaction.destination === "lead_buy"
           )
-          .reduce((total, transaction) => transaction.amount, 0);
+          .reduce((total, transaction) => total + transaction.amount, 0);
         const totalRefund = sortedTransactions
           .filter(
             (transaction) =>
